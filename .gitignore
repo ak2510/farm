@@ -1,0 +1,32 @@
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Gradle build
+/.gradle/
+/build/
+
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Spring Boot specific
+*.jar
+*.war
+*.ear
+*.db
+
+
+# Dependency directories
+.gradle/
+/maven-wrapper/
+
+# Gradle Wrapper
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
