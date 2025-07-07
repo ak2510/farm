@@ -16,6 +16,7 @@ public record CreateGoatRequest(
 
         String color,
 
+        @Positive(message = "Weight can not be zero or negative number")
         Double weight,
 
         String hornType

@@ -14,10 +14,11 @@ A specific class for representing validation errors when input data fails. Used 
 @NoArgsConstructor
 public class ValidationErrorResponse {
     private String status = "error";
+    private int code;
     private List<ErrorDetail> errors;
 
-    public ValidationErrorResponse(String status, List<ErrorDetail> errors) {
-        this.status = status;
+    public ValidationErrorResponse(int code, List<ErrorDetail> errors) {
+        this.code = code;
         this.errors = errors;
     }
 

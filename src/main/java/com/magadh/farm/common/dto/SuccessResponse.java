@@ -10,10 +10,12 @@ import lombok.Setter;
 public class SuccessResponse<T> {
 
     private String status = "success";
+    private int code;
     private String message;
     private T data;
 
-    public SuccessResponse(String message, T data) {
+    public SuccessResponse(int code, String message, T data) {
+        this.code = code;
         this.message = message;
         this.data = data;
     }

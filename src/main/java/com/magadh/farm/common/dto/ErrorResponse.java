@@ -15,9 +15,11 @@ A general class for error responses. This can be used for 400, 404, 500, and oth
 public class ErrorResponse {
 
     private String status = "error";
+    int code;
     private String message;
 
-    public ErrorResponse(String message) {
+    public ErrorResponse(int code, String message) {
+        this.code = code;
         this.message = message;
     }
 }

@@ -3,7 +3,10 @@ package com.magadh.farm.goatmanagement.controller;
 import com.magadh.farm.common.dto.ErrorResponse;
 import com.magadh.farm.common.dto.SuccessResponse;
 import com.magadh.farm.goatmanagement.domain.Goat;
+import com.magadh.farm.goatmanagement.dto.CreateGoatRequest;
+import com.magadh.farm.goatmanagement.dto.GoatResponse;
 import com.magadh.farm.goatmanagement.service.GoatService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +28,9 @@ public class GoatController {
      * @return
      */
     @PostMapping
-    public String registerGoat() {
+    public String registerGoat(@RequestBody @Valid  CreateGoatRequest goatRequest) {
+        goatService.createGoat(goatRequest);
+
         return "Registered New Goat";
     }
 
@@ -46,14 +51,19 @@ public class GoatController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Object> getGoatById(@PathVariable("id") Long goatId) {
-        try {
-            Goat goat = goatService.getGoatDetailsById(12L);
+
+        GoatResponse goat = goatService.getGoatDetailsById(goatId);
+        SuccessResponse<GoatResponse> response = new SuccessResponse<>(HttpStatus.OK.value(),"Goat details retrieved successfully", goat);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+
+        /*try {
+            Goat goat = goatService.getGoatDetailsById(goatId);
             SuccessResponse<Goat> response = new SuccessResponse<>("Goat details retrieved successfully", goat);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
             ErrorResponse response = new ErrorResponse("User Not Found");
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
-        }
+        }*/
     }
 
     /**
